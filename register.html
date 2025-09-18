@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournament Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: url("bg.jpg") no-repeat center center/cover;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-container {
+      flex: 1;
+      padding: 40px;
+      background: rgba(0,0,0,0.75);
+      overflow-y: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #ff00ff;
+      font-size: 2rem;
+    }
+
+    label {
+      font-weight: 500;
+      margin-top: 15px;
+      display: block;
+    }
+
+    input, select {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 2px solid #555;
+  background: rgba(255,255,255,0.05);
+  color: #ccc; /* <- yahan white se grey kar diya */
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+input::placeholder, select::placeholder {
+  color: #aaa; /* placeholder ko thoda lighter grey */
+}
+
+input:focus, select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 8px #00ffff;
+  outline: none;
+  color: #fff; /* focus pe thoda brighter dikhana ho to */
+}
+
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff00cc, 0 0 25px #3333ff;
+    }
+
+    .optional-player {
+      display: none;
+    }
+
+    .add-player-btn {
+      background: transparent;
+      border: 2px dashed #00ffff;
+      color: #00ffff;
+      width: auto;
+      padding: 8px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+
+    .add-player-btn:hover {
+      background: #00ffff;
+      color: #000;
+    }
+
+    /* Scrollbar styling */
+    .form-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .form-container::-webkit-scrollbar-thumb {
+      background: #00ffff;
+      border-radius: 4px;
+    }
+    .form-container::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Register Your Team To Join The Battle</h2>
+    <form action="https://formspree.io/f/mnqezvbr" method="POST">
+      <label>Team Name</label>
+      <input type="text" name="team" required>
+
+      <label>Player 1</label>
+      <input type="text" name="player1" required>
+
+      <label>Player 2</label>
+      <input type="text" name="player2">
+
+      <div class="optional-player" id="player3-container">
+        <label>Player 3</label>
+        <input type="text" name="player3">
+      </div>
+
+      <div class="optional-player" id="player4-container">
+        <label>Player 4</label>
+        <input type="text" name="player4">
+      </div>
+
+      <button type="button" class="add-player-btn" id="add-player">+ Add More Players</button>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Phone Number</label>
+      <input type="text" name="phone" required>
+
+      <label>Payment Done?</label>
+      <select name="payment" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const addPlayerBtn = document.getElementById('add-player');
+    const player3 = document.getElementById('player3-container');
+    const player4 = document.getElementById('player4-container');
+    let count = 0;
+
+    addPlayerBtn.addEventListener('click', () => {
+      if(count === 0) {
+        player3.style.display = 'block';
+        count++;
+      } else if(count === 1) {
+        player4.style.display = 'block';
+        count++;
+        addPlayerBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
